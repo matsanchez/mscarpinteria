@@ -1,0 +1,129 @@
+/* --------Selectores Globales-------- */
+@import "mediasqueries";
+
+
+/* --------MOBILE FIRST-------- */
+@mixin media-querie($breackpoint){
+    @media (min-width: map-get($breackpoints, $breackpoint)){
+        @content;
+    }
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* --------Encabezado Web-------- */
+header{
+    grid-area: header;
+    margin:5px 0px;
+    text-align: center;
+    background-color: $primarycolor;
+    img{
+        width: 150px;
+    }
+    h1{
+        background-color: $thirdcolor;
+        color: $secondcolor;
+        margin: 0px;
+        padding: 10px;
+        font-size: 2rem;
+    }
+}
+/* --------Estilos del menu con Media Querie Responsive-------- */
+nav{
+    grid-area: navbar;
+    ul{
+        list-style: none;
+        display: none;
+        @include media-querie(sm){
+            text-align: center;
+            display: block;
+            margin: 0;
+        }
+        li{
+            padding: 10px;
+            text-align: center;
+            transition: all ease-in-out 250ms;
+            &:hover{
+                background-color: $secondcolor;
+            }
+            a{
+                text-decoration: none;
+                color: $thirdcolor !important;
+            }
+            @include media-querie(sm){
+                display: inline-block;
+                padding: 20px;
+            }
+        }
+    }
+}
+.hide{
+    display: block;
+    font-size: 22px;
+    padding: 10px;
+    cursor: pointer;
+    @include media-querie(sm){
+        display: none;
+    }
+}
+/* --------Fin de estilos Menu-------- */
+body{
+    background-color: $primarycolor;
+    width: 100%;
+    min-height: 100vh;
+}
+/* --------Titulos de todas las secciones-------- */
+h2{
+    color: $thirdcolor;
+    text-align: center;
+    padding: 5px;
+    background-color: $secondcolor;
+}
+h4{
+    @extend h2;
+    text-decoration: none;
+    background-image: linear-gradient($thirdcolor, $thirdcolor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size .3s;
+    &:hover, h4:focus {
+        background-size: 100% 1px;
+    }
+}
+/* --------Configuracion Pie de Pagina-------- */
+footer{
+    grid-area: footer;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: $thirdcolor;
+    margin-bottom:0;
+    p{
+        margin: 5px;
+        color: $secondcolor;
+        font-size: 1rem;
+        text-align: center;
+    }
+    a{
+      color: $primarycolor !important;
+    }
+    div{
+        margin: 40px;
+    }
+}
+/* --------Iconos Social Medias Footer-------- */
+.iconSocialMedia{
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    &:hover{
+            opacity: 0.5;
+    }
+}
+/* --------Fin configuracion Pie de Pagina-------- */
+/* --------Fin selectores globales-------- */

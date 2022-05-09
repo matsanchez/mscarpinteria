@@ -1,0 +1,555 @@
+/* --------Selectores Globales-------- */
+/* --------MOBILE FIRST-------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --------Encabezado Web-------- */
+header {
+  grid-area: header;
+  margin: 5px 0px;
+  text-align: center;
+  background-color: #FEDBD0;
+}
+header img {
+  width: 150px;
+}
+header h1 {
+  background-color: #442C2E;
+  color: #FEEAE6;
+  margin: 0px;
+  padding: 10px;
+  font-size: 2rem;
+}
+
+/* --------Estilos del menu con Media Querie Responsive-------- */
+nav {
+  grid-area: navbar;
+}
+nav ul {
+  list-style: none;
+  display: none;
+}
+@media (min-width: 640px) {
+  nav ul {
+    text-align: center;
+    display: block;
+    margin: 0;
+  }
+}
+nav ul li {
+  padding: 10px;
+  text-align: center;
+  transition: all ease-in-out 250ms;
+}
+nav ul li:hover {
+  background-color: #FEEAE6;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #442C2E !important;
+}
+@media (min-width: 640px) {
+  nav ul li {
+    display: inline-block;
+    padding: 20px;
+  }
+}
+
+.hide {
+  display: block;
+  font-size: 22px;
+  padding: 10px;
+  cursor: pointer;
+}
+@media (min-width: 640px) {
+  .hide {
+    display: none;
+  }
+}
+
+/* --------Fin de estilos Menu-------- */
+body {
+  background-color: #FEDBD0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* --------Titulos de todas las secciones-------- */
+h2, h4 {
+  color: #442C2E;
+  text-align: center;
+  padding: 5px;
+  background-color: #FEEAE6;
+}
+
+h4 {
+  text-decoration: none;
+  background-image: linear-gradient(#442C2E, #442C2E);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.3s;
+}
+h4:hover, h4 h4:focus {
+  background-size: 100% 1px;
+}
+
+/* --------Configuracion Pie de Pagina-------- */
+footer {
+  grid-area: footer;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: #442C2E;
+  margin-bottom: 0;
+}
+footer p {
+  margin: 5px;
+  color: #FEEAE6;
+  font-size: 1rem;
+  text-align: center;
+}
+footer a {
+  color: #FEDBD0 !important;
+}
+footer div {
+  margin: 40px;
+}
+
+/* --------Iconos Social Medias Footer-------- */
+.iconSocialMedia {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+}
+.iconSocialMedia:hover {
+  opacity: 0.5;
+}
+
+/* --------Fin configuracion Pie de Pagina-------- */
+/* --------Fin selectores globales-------- */
+/* ------------------------------------ */
+/* --------Seccion Home-------- */
+/* ------------------------------------ */
+/* --------Estructura GRID-------- */
+.home-grid, .contacto-grid, .productos-grid, .servicios-grid, .empresa-grid {
+  display: grid;
+  grid-template-areas: "header" "navbar" "carousel" "footer";
+  grid-template-columns: 100%;
+  grid-template-rows: auto auto 1fr auto;
+}
+
+.carousel-principal {
+  grid-area: carousel;
+}
+
+/* --------Configuracion Slide de Imagenes-------- */
+/* --------Contenedor Slide-------- */
+.container-all {
+  position: relative;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* --------Contenedor de las imagenes y Animacion-------- */
+.slide {
+  display: flex;
+  transform: translate3d(0, 0, 0);
+  transition: all 200ms;
+  animation-name: autoplay;
+  animation-duration: 20s;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
+
+.item-slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: 100%;
+}
+
+/* --------Guia del slide-------- */
+.paginacion {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.paginacion-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #442C2E;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 0 10px;
+  text-align: center;
+  transition: all 200ms;
+}
+.paginacion-item:hover {
+  transform: scale(2);
+}
+.paginacion-item img {
+  display: inline-block;
+  height: 100%;
+  transform: scale(1);
+  opacity: 0;
+  transition: all 200ms;
+}
+.paginacion-item img:hover {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --------Configuracion del funcionar del Slide-------- */
+input[id="1"]:checked ~ .item-slide {
+  animation: none;
+  transform: translate3d(0, 0, 0);
+}
+
+input[id="1"]:checked ~ .paginacion .paginacion-item[for="1"] {
+  background-color: white;
+}
+
+input[id="2"]:checked ~ .item-slide {
+  animation: none;
+  transform: translate3d(-100%, 0, 0);
+}
+
+input[id="2"]:checked ~ .paginacion .paginacion-item[for="2"] {
+  background-color: white;
+}
+
+input[id="3"]:checked ~ .item-slide {
+  animation: none;
+  transform: translate3d(-200%, 0, 0);
+}
+
+input[id="3"]:checked ~ .paginacion .paginacion-item[for="3"] {
+  background-color: white;
+}
+
+input[id="4"]:checked ~ .item-slide {
+  animation: none;
+  transform: translate3d(-300%, 0, 0);
+}
+
+input[id="4"]:checked ~ .paginacion .paginacion-item[for="4"] {
+  background-color: white;
+}
+
+input[id="5"]:checked ~ .item-slide {
+  animation: none;
+  transform: translate3d(-400%, 0, 0);
+}
+
+input[id="5"]:checked ~ .paginacion .paginacion-item[for="5"] {
+  background-color: white;
+}
+
+/* --------Configuracion de la Animacion del Slide-------- */
+@keyframes autoplay {
+  20% {
+    transform: translate3d(0%, 0, 0);
+  }
+  40% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  60% {
+    transform: translate3d(-200%, 0, 0);
+  }
+  80% {
+    transform: translate3d(-300%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-400%, 0, 0);
+  }
+}
+/* ------------------------------------ */
+/* --------Seccion Empresa-------- */
+/* ------------------------------------ */
+/* --------Estructura GRID-------- */
+.empresa-grid {
+  grid-template-areas: "header" "navbar" "about" "footer";
+}
+
+.empresa {
+  grid-area: about;
+}
+
+/* --------Configuracion Banners Empresa-------- */
+.banners, .banners-reverse {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem auto;
+  background: white;
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 0;
+}
+@media (min-width: 640px) {
+  .banners, .banners-reverse {
+    flex-direction: row;
+    width: 90%;
+  }
+}
+.banners:hover .img-banner, .banners-reverse:hover .img-banner {
+  transform: scale(1.3) rotate(-3deg);
+}
+.banners .img-config, .banners-reverse .img-config {
+  position: relative;
+  z-index: 0;
+  height: 150px;
+}
+@media (min-width: 640px) {
+  .banners .img-config, .banners-reverse .img-config {
+    flex-basis: 50%;
+    height: 200px;
+  }
+}
+.banners .img-banner, .banners-reverse .img-banner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.2s;
+}
+.banners .texto-banner, .banners-reverse .texto-banner {
+  padding: 1rem;
+  background: #FEEAE6;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.banners .texto-banner h4, .banners-reverse .texto-banner h4 {
+  background-color: #FEDBD0;
+}
+@media (min-width: 640px) {
+  .banners .texto-banner, .banners-reverse .texto-banner {
+    text-align: left;
+    flex-basis: 60%;
+  }
+  .banners .texto-banner h4, .banners-reverse .texto-banner h4 {
+    text-align: left;
+    background-color: #FEDBD0;
+  }
+}
+
+/* --------Banners Al reves-------- */
+@media (min-width: 640px) {
+  .banners-reverse {
+    flex-direction: row-reverse;
+    width: 90%;
+  }
+}
+
+/* --------Fin configuracion Banner Empresas-------- */
+/* ------------------------------------ */
+/* --------Seccion Servicios-------- */
+/* ------------------------------------ */
+/* --------Estructura GRID-------- */
+.servicios-grid {
+  grid-template-areas: "header" "navbar" "servicios" "footer";
+}
+
+.servicios {
+  grid-area: servicios;
+}
+
+/* --------Configuracion de las Tarjetas Servicios-------- */
+.card-container {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .card-container {
+    margin: 2.5rem auto;
+  }
+}
+@media (min-width: 768px) {
+  .card-container {
+    flex-flow: row;
+    margin: 1rem auto;
+    width: 90%;
+  }
+}
+
+/* --------Cuerpo de Tarjeta-------- */
+.card {
+  display: flex;
+  width: 100%;
+  margin-top: 3px;
+  margin-bottom: 5px;
+  background-color: #FEEAE6;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  .card {
+    margin: 5px;
+  }
+}
+
+/* --------Configuracion de la imagen en la tarjeta-------- */
+.card-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  border-radius: 2px;
+}
+
+.card-img-config {
+  position: relative;
+  z-index: 0;
+  height: 150px;
+}
+@media (min-width: 1024px) {
+  .card-img-config {
+    height: 30vh;
+  }
+}
+
+/* --------Configuracion de la descripcion-------- */
+.card-text {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+.card-text h4 {
+  background-color: #FEDBD0;
+}
+
+/* --------Fin configuracion de la imagen en la tarjeta y Texto-------- */
+/* --------Fin Configuracion de las Tarjetas Servicios-------- */
+/* ------------------------------------ */
+/* --------Seccion Productos-------- */
+/* ------------------------------------ */
+.productos-grid {
+  grid-template-areas: "header" "navbar" "productos" "footer";
+}
+
+.catalogo {
+  grid-area: productos;
+}
+
+/* --------Configuracion de la galeria Productos-------- */
+/* --------Galeria Contenedora-------- */
+.galeria-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+/* --------Items de la Galeria-------- */
+.producto {
+  margin: 10px 3px;
+  background-color: #f0cac0;
+  border-radius: 5px;
+  box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.65);
+}
+@media (min-width: 640px) {
+  .producto {
+    margin: 10px 10px;
+  }
+}
+.producto img {
+  width: 200px;
+  height: 200px;
+  border-radius: 5px;
+  box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.65);
+}
+.producto .producto-text {
+  width: 200px;
+  margin-top: 5px;
+  height: auto;
+  background-color: #f0cac0;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/* --------Fin Configuracion de la galeria Productos-------- */
+/* ------------------------------------ */
+/* --------Seccion contacto-------- */
+/* ------------------------------------ */
+/* --------Estructura GRID-------- */
+.contacto-grid {
+  grid-template-areas: "header" "navbar" "contacto" "footer";
+}
+
+.area-contacto {
+  grid-area: contacto;
+}
+
+/* --------Tarjeta de Contacto-------- */
+.card-contacto {
+  background-color: #FEEAE6;
+}
+.card-contacto div {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  align-content: center;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .card-contacto div {
+    justify-content: center;
+  }
+}
+.card-contacto div ul {
+  margin-top: 15px;
+}
+.card-contacto div ul li {
+  list-style: none;
+}
+.card-contacto div svg {
+  color: #f0cac0;
+  width: 90px;
+  height: auto;
+}
+.card-contacto h4 {
+  background-color: #f0cac0;
+}
+
+/* --------Fin Tarjeta de Contacto-------- */
+/* --------Boton Formulario de Contacto-------- */
+.btn {
+  background-color: #f0cac0;
+  color: #442C2E;
+  box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.65);
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 100%;
+}
+.btn:hover {
+  background-color: #FEEAE6;
+}
+
+/*# sourceMappingURL=style.css.map */
