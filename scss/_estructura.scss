@@ -74,6 +74,66 @@ body{
     width: 100%;
     min-height: 100vh;
 }
+/* --------Configuracion de las Tarjetas-------- */
+.tarjeta-container{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+    text-align: center;
+    @include media-querie(md){
+        flex-flow: column;
+        width: 95%;
+        margin: auto;
+    }
+    @include media-querie(lg){
+        flex-flow: row;
+        margin: 1rem auto;
+        width: 90%;
+    }
+}
+/* --------Cuerpo de Tarjeta-------- */
+.tarjeta-item{
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    margin: 0.5rem auto;
+    background-color: $secondcolor;
+    padding: 10px;
+    @include media-querie(md){
+        margin: 0.5rem;
+    }
+    div{
+        position: relative;
+        height: 140px;
+        @include media-querie(md){
+            height: 100px;
+        }
+        @include media-querie(lg){
+            height: 150px;
+        }
+        /* --------Configuracion de la imagen en la tarjeta-------- */
+        div{
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-size: cover;
+            background-position: center;
+            border-radius: 2px;
+        }
+    }
+        /* --------Configuracion de la descripcion-------- */
+    div:last-child{
+        h4{
+            background-color: $primarycolor;
+        }
+    }
+}
+/* --------Fin configuracion de la imagen en la tarjeta y Texto-------- */
+/* --------Fin Configuracion de las Tarjetas-------- */
 /* --------Titulos de todas las secciones-------- */
 h2{
     color: $thirdcolor;

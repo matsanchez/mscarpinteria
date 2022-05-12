@@ -1,6 +1,6 @@
 // --------Partials-------- //
 @import "colours"; //Colores Generales
-@import "global";  //Configuraciones de estructuras 
+@import "estructura";  //Configuraciones Generales de Estructuras
 @import "mediasqueries"; //Medias Queries
 
 /* ------------------------------------ */
@@ -17,129 +17,35 @@
     grid-template-columns: 100%;
     grid-template-rows: auto auto 1fr auto;
 }
+/* --------Contenedor Slide-------- */
 .carousel-principal{
     grid-area: carousel;
-}
-/* --------Configuracion Slide de Imagenes-------- */
-/* --------Contenedor Slide-------- */
-.container-all{
-    position: relative;
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
     overflow: hidden;
-}
-/* --------Contenedor de las imagenes y Animacion-------- */
-.slide{
-    display: flex;
-    transform: translate3d(0,0,0);
-    transition: all 200ms;
-    animation-name: autoplay;
-    animation-duration: 20s;
-    animation-direction: alternate;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-}
-.item-slide{
+    div{
     position: relative;
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    flex-grow: 0;
-    width: 100%;
-
-}
-/* --------Guia del slide-------- */
-.paginacion{
-    position:absolute;
-    bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-.paginacion-item{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid $thirdcolor;
-    width: 16px;
-    height: 16px;
-    border-radius: 4px;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.5);
-    margin: 0 10px;
-    text-align: center;
-    transition: all 200ms;
-    &:hover{
-        transform: scale(2);
-    }
+    width: 500%;
+    margin: 0;
+    left: 0;
+    text-align: left;
+    font-size: 0;
+    animation: 20s autoplay infinite;
     img{
-        display: inline-block;
-        height: 100%;
-        transform: scale(1);
-        opacity: 0;
-        transition: all 200ms;
-        &:hover{
-            opacity: 1;
-            transform: scale(1);
-        }
+        width: 20%;
+        float: left;
+    }
     }
 }
-/* --------Configuracion del funcionar del Slide-------- */
-input[id="1"]:checked ~ .item-slide{
-        animation: none;
-        transform: translate3d(0, 0, 0);
-}
-input[id="1"]:checked ~ .paginacion .paginacion-item[for="1"]{
-        background-color: white;
-}
-input[id="2"]:checked ~ .item-slide{
-        animation: none;
-        transform: translate3d(calc(-100%*1), 0, 0);
-}
-input[id="2"]:checked ~ .paginacion .paginacion-item[for="2"]{
-        background-color: white;
-}
-input[id="3"]:checked ~ .item-slide{
-        animation: none;
-        transform: translate3d(calc(-100%*2), 0, 0);
-}
-input[id="3"]:checked ~ .paginacion .paginacion-item[for="3"]{
-        background-color: white;
-}
-input[id="4"]:checked ~ .item-slide{
-        animation: none;
-        transform: translate3d(calc(-100%*3), 0, 0);
-}
-input[id="4"]:checked ~ .paginacion .paginacion-item[for="4"]{
-        background-color: white;
-}
-input[id="5"]:checked ~ .item-slide{
-        animation: none;
-        transform: translate3d(calc(-100%*4), 0, 0);
-}
-input[id="5"]:checked ~ .paginacion .paginacion-item[for="5"]{
-        background-color: white;
-}
-/* --------Configuracion de la Animacion del Slide-------- */
+/* --------Animacion Basica del Carousel-------- */
 @keyframes autoplay {
-        20%{
-            transform: translate3d(calc(-100%*0), 0, 0);
-        }
-        40%{
-            transform: translate3d(calc(-100%*1), 0, 0);
-        }
-        60%{
-            transform: translate3d(calc(-100%*2), 0, 0);
-        }
-        80%{
-            transform: translate3d(calc(-100%*3), 0, 0);
-        }
-        100%{
-            transform: translate3d(calc(-100%*4), 0, 0);
-        }       
+    0% { left: 0%; }
+    20% { left: 0%; }
+    25% { left: -100%; }
+    45% { left: -100%; }
+    50% { left: -200%; }
+    70% { left: -200%; }
+    75% { left: -300%; }
+    95% { left: -300%; }
+    100% { left: -400%; }
 }
 /* ------------------------------------ */
 /* --------Seccion Empresa-------- */
@@ -155,72 +61,9 @@ input[id="5"]:checked ~ .paginacion .paginacion-item[for="5"]{
 }
 .empresa{
      grid-area: about;
+     display: flex;
+     flex-flow: column;
 }
-/* --------Configuracion Banners Empresa-------- */
-.banners{
-    display: flex;
-    flex-direction: column;
-    margin: 1rem auto;
-    background: white;
-    border-radius: 5px;
-    overflow: hidden;
-    z-index: 0;
-    @include media-querie(sm){
-        flex-direction: row;
-        width: 90%;
-    }
-    &:hover {
-      .img-banner {
-        transform: scale(1.3) rotate(-3deg);
-      }
-    }
-    .img-config {
-      position: relative;
-      z-index: 0;
-      height: 150px;
-      @include media-querie(sm){
-        flex-basis: 50%;
-        height: 200px;
-      }
-    }
-    .img-banner {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-size: cover;
-      background-position: center;
-      transition: transform .2s;
-    }
-    .texto-banner {
-      padding: 1rem;
-      background: $secondcolor;
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      h4{
-          background-color: $primarycolor;
-      }
-      @include media-querie(sm){
-        h4{
-            text-align: left;
-            background-color: $primarycolor;
-        }
-        text-align: left;
-        flex-basis: 60%;
-      }
-    }
-}
-/* --------Banners Al reves-------- */
-.banners-reverse{
-    @extend .banners;
-    @include media-querie(sm){
-        flex-direction: row-reverse;
-        width: 90%;
-    }
-}
-/* --------Fin configuracion Banner Empresas-------- */
 /* ------------------------------------ */
 /* --------Seccion Servicios-------- */
 /* ------------------------------------ */
@@ -236,62 +79,6 @@ input[id="5"]:checked ~ .paginacion .paginacion-item[for="5"]{
 .servicios{
     grid-area: servicios;
 }
-/* --------Configuracion de las Tarjetas Servicios-------- */
-.card-container{
-    display: flex;
-    flex-flow: column;
-    width: 100%;
-    @include media-querie(sm){
-        margin: 2.5rem auto;
-    }
-    @include media-querie(md){
-        flex-flow: row;
-        margin: 1rem auto;
-        width: 90%;
-    }
-}
-/* --------Cuerpo de Tarjeta-------- */
-.card{
-    display: flex;
-    width: 100%;
-    margin-top: 3px;
-    margin-bottom: 5px;
-    background-color: $secondcolor;
-    padding: 10px;
-    @include media-querie(md){
-        margin: 5px;
-    }
-}
-/* --------Configuracion de la imagen en la tarjeta-------- */
-.card-image{
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-size: cover;
-    background-position: center;
-    border-radius: 2px;
-}
-.card-img-config{
-    position: relative;
-    z-index: 0;
-    height: 150px;
-    @include media-querie(lg){
-        height: 30vh;
-    }
-}
-/* --------Configuracion de la descripcion-------- */
-.card-text{
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    h4{
-        background-color: $primarycolor;
-    }
-}
-/* --------Fin configuracion de la imagen en la tarjeta y Texto-------- */
-/* --------Fin Configuracion de las Tarjetas Servicios-------- */
 /* ------------------------------------ */
 /* --------Seccion Productos-------- */
 /* ------------------------------------ */
@@ -300,11 +87,24 @@ input[id="5"]:checked ~ .paginacion .paginacion-item[for="5"]{
     grid-template-areas: 
     "header"
     "navbar"
+    "titulo"
     "productos"
     "footer";
 }
+.seccion{
+    grid-area: titulo;
+}
 .catalogo{
     grid-area: productos;
+    display: flex;
+    justify-self: center;
+    width: 100%;
+    @include media-querie(md){
+        width: 90%;
+    }
+    @include media-querie(lg){
+        width: 95%;
+    }
 }
 /* --------Configuracion de la galeria Productos-------- */
 /* --------Galeria Contenedora-------- */
@@ -323,6 +123,12 @@ input[id="5"]:checked ~ .paginacion .paginacion-item[for="5"]{
     @include media-querie(sm){
         margin: 10px 10px;
     }
+    @include media-querie(lg){
+        &:hover{
+            transform: scale(1.3);
+            box-shadow: 0px 0px 20px 10px rgba(68,44,46,1);
+        }
+    }
     img{
         width: 200px;
         height: 200px;
@@ -330,7 +136,7 @@ input[id="5"]:checked ~ .paginacion .paginacion-item[for="5"]{
         box-shadow: 0px 10px 15px -15px rgba(0,0,0,0.65);
     }
      // --------Configuracion de la descripcion de los items--------//
-    .producto-text{
+    div:last-child{
         width: 200px;
         margin-top: 5px;
         height: auto;
@@ -370,8 +176,8 @@ input[id="5"]:checked ~ .paginacion .paginacion-item[for="5"]{
         }
         ul{
             margin-top: 15px;
-         li{
-            list-style: none;
+            li{
+                list-style: none;
         }
         }
         svg{

@@ -77,6 +77,76 @@ body {
   min-height: 100vh;
 }
 
+/* --------Configuracion de las Tarjetas-------- */
+.tarjeta-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .tarjeta-container {
+    flex-flow: column;
+    width: 95%;
+    margin: auto;
+  }
+}
+@media (min-width: 1024px) {
+  .tarjeta-container {
+    flex-flow: row;
+    margin: 1rem auto;
+    width: 90%;
+  }
+}
+
+/* --------Cuerpo de Tarjeta-------- */
+.tarjeta-item {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  margin: 0.5rem auto;
+  background-color: #FEEAE6;
+  padding: 10px;
+  /* --------Configuracion de la descripcion-------- */
+}
+@media (min-width: 768px) {
+  .tarjeta-item {
+    margin: 0.5rem;
+  }
+}
+.tarjeta-item div {
+  position: relative;
+  height: 140px;
+  /* --------Configuracion de la imagen en la tarjeta-------- */
+}
+@media (min-width: 768px) {
+  .tarjeta-item div {
+    height: 100px;
+  }
+}
+@media (min-width: 1024px) {
+  .tarjeta-item div {
+    height: 150px;
+  }
+}
+.tarjeta-item div div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  border-radius: 2px;
+}
+.tarjeta-item div:last-child h4 {
+  background-color: #FEDBD0;
+}
+
+/* --------Fin configuracion de la imagen en la tarjeta y Texto-------- */
+/* --------Fin Configuracion de las Tarjetas-------- */
 /* --------Titulos de todas las secciones-------- */
 h2, h4 {
   color: #442C2E;
@@ -144,143 +214,53 @@ footer div {
   grid-template-rows: auto auto 1fr auto;
 }
 
+/* --------Contenedor Slide-------- */
 .carousel-principal {
   grid-area: carousel;
-}
-
-/* --------Configuracion Slide de Imagenes-------- */
-/* --------Contenedor Slide-------- */
-.container-all {
-  position: relative;
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
   overflow: hidden;
 }
-
-/* --------Contenedor de las imagenes y Animacion-------- */
-.slide {
-  display: flex;
-  transform: translate3d(0, 0, 0);
-  transition: all 200ms;
-  animation-name: autoplay;
-  animation-duration: 20s;
-  animation-direction: alternate;
-  animation-fill-mode: forwards;
-  animation-iteration-count: infinite;
-}
-
-.item-slide {
+.carousel-principal div {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  flex-grow: 0;
-  width: 100%;
+  width: 500%;
+  margin: 0;
+  left: 0;
+  text-align: left;
+  font-size: 0;
+  animation: 20s autoplay infinite;
+}
+.carousel-principal div img {
+  width: 20%;
+  float: left;
 }
 
-/* --------Guia del slide-------- */
-.paginacion {
-  position: absolute;
-  bottom: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.paginacion-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #442C2E;
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.5);
-  margin: 0 10px;
-  text-align: center;
-  transition: all 200ms;
-}
-.paginacion-item:hover {
-  transform: scale(2);
-}
-.paginacion-item img {
-  display: inline-block;
-  height: 100%;
-  transform: scale(1);
-  opacity: 0;
-  transition: all 200ms;
-}
-.paginacion-item img:hover {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* --------Configuracion del funcionar del Slide-------- */
-input[id="1"]:checked ~ .item-slide {
-  animation: none;
-  transform: translate3d(0, 0, 0);
-}
-
-input[id="1"]:checked ~ .paginacion .paginacion-item[for="1"] {
-  background-color: white;
-}
-
-input[id="2"]:checked ~ .item-slide {
-  animation: none;
-  transform: translate3d(-100%, 0, 0);
-}
-
-input[id="2"]:checked ~ .paginacion .paginacion-item[for="2"] {
-  background-color: white;
-}
-
-input[id="3"]:checked ~ .item-slide {
-  animation: none;
-  transform: translate3d(-200%, 0, 0);
-}
-
-input[id="3"]:checked ~ .paginacion .paginacion-item[for="3"] {
-  background-color: white;
-}
-
-input[id="4"]:checked ~ .item-slide {
-  animation: none;
-  transform: translate3d(-300%, 0, 0);
-}
-
-input[id="4"]:checked ~ .paginacion .paginacion-item[for="4"] {
-  background-color: white;
-}
-
-input[id="5"]:checked ~ .item-slide {
-  animation: none;
-  transform: translate3d(-400%, 0, 0);
-}
-
-input[id="5"]:checked ~ .paginacion .paginacion-item[for="5"] {
-  background-color: white;
-}
-
-/* --------Configuracion de la Animacion del Slide-------- */
+/* --------Animacion Basica del Carousel-------- */
 @keyframes autoplay {
+  0% {
+    left: 0%;
+  }
   20% {
-    transform: translate3d(0%, 0, 0);
+    left: 0%;
   }
-  40% {
-    transform: translate3d(-100%, 0, 0);
+  25% {
+    left: -100%;
   }
-  60% {
-    transform: translate3d(-200%, 0, 0);
+  45% {
+    left: -100%;
   }
-  80% {
-    transform: translate3d(-300%, 0, 0);
+  50% {
+    left: -200%;
+  }
+  70% {
+    left: -200%;
+  }
+  75% {
+    left: -300%;
+  }
+  95% {
+    left: -300%;
   }
   100% {
-    transform: translate3d(-400%, 0, 0);
+    left: -400%;
   }
 }
 /* ------------------------------------ */
@@ -293,78 +273,10 @@ input[id="5"]:checked ~ .paginacion .paginacion-item[for="5"] {
 
 .empresa {
   grid-area: about;
-}
-
-/* --------Configuracion Banners Empresa-------- */
-.banners, .banners-reverse {
   display: flex;
-  flex-direction: column;
-  margin: 1rem auto;
-  background: white;
-  border-radius: 5px;
-  overflow: hidden;
-  z-index: 0;
-}
-@media (min-width: 640px) {
-  .banners, .banners-reverse {
-    flex-direction: row;
-    width: 90%;
-  }
-}
-.banners:hover .img-banner, .banners-reverse:hover .img-banner {
-  transform: scale(1.3) rotate(-3deg);
-}
-.banners .img-config, .banners-reverse .img-config {
-  position: relative;
-  z-index: 0;
-  height: 150px;
-}
-@media (min-width: 640px) {
-  .banners .img-config, .banners-reverse .img-config {
-    flex-basis: 50%;
-    height: 200px;
-  }
-}
-.banners .img-banner, .banners-reverse .img-banner {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.2s;
-}
-.banners .texto-banner, .banners-reverse .texto-banner {
-  padding: 1rem;
-  background: #FEEAE6;
-  position: relative;
-  z-index: 1;
-  text-align: center;
-}
-.banners .texto-banner h4, .banners-reverse .texto-banner h4 {
-  background-color: #FEDBD0;
-}
-@media (min-width: 640px) {
-  .banners .texto-banner, .banners-reverse .texto-banner {
-    text-align: left;
-    flex-basis: 60%;
-  }
-  .banners .texto-banner h4, .banners-reverse .texto-banner h4 {
-    text-align: left;
-    background-color: #FEDBD0;
-  }
+  flex-flow: column;
 }
 
-/* --------Banners Al reves-------- */
-@media (min-width: 640px) {
-  .banners-reverse {
-    flex-direction: row-reverse;
-    width: 90%;
-  }
-}
-
-/* --------Fin configuracion Banner Empresas-------- */
 /* ------------------------------------ */
 /* --------Seccion Servicios-------- */
 /* ------------------------------------ */
@@ -377,84 +289,32 @@ input[id="5"]:checked ~ .paginacion .paginacion-item[for="5"] {
   grid-area: servicios;
 }
 
-/* --------Configuracion de las Tarjetas Servicios-------- */
-.card-container {
-  display: flex;
-  flex-flow: column;
-  width: 100%;
-}
-@media (min-width: 640px) {
-  .card-container {
-    margin: 2.5rem auto;
-  }
-}
-@media (min-width: 768px) {
-  .card-container {
-    flex-flow: row;
-    margin: 1rem auto;
-    width: 90%;
-  }
-}
-
-/* --------Cuerpo de Tarjeta-------- */
-.card {
-  display: flex;
-  width: 100%;
-  margin-top: 3px;
-  margin-bottom: 5px;
-  background-color: #FEEAE6;
-  padding: 10px;
-}
-@media (min-width: 768px) {
-  .card {
-    margin: 5px;
-  }
-}
-
-/* --------Configuracion de la imagen en la tarjeta-------- */
-.card-image {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-size: cover;
-  background-position: center;
-  border-radius: 2px;
-}
-
-.card-img-config {
-  position: relative;
-  z-index: 0;
-  height: 150px;
-}
-@media (min-width: 1024px) {
-  .card-img-config {
-    height: 30vh;
-  }
-}
-
-/* --------Configuracion de la descripcion-------- */
-.card-text {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-}
-.card-text h4 {
-  background-color: #FEDBD0;
-}
-
-/* --------Fin configuracion de la imagen en la tarjeta y Texto-------- */
-/* --------Fin Configuracion de las Tarjetas Servicios-------- */
 /* ------------------------------------ */
 /* --------Seccion Productos-------- */
 /* ------------------------------------ */
 .productos-grid {
-  grid-template-areas: "header" "navbar" "productos" "footer";
+  grid-template-areas: "header" "navbar" "titulo" "productos" "footer";
+}
+
+.seccion {
+  grid-area: titulo;
 }
 
 .catalogo {
   grid-area: productos;
+  display: flex;
+  justify-self: center;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .catalogo {
+    width: 90%;
+  }
+}
+@media (min-width: 1024px) {
+  .catalogo {
+    width: 95%;
+  }
 }
 
 /* --------Configuracion de la galeria Productos-------- */
@@ -478,13 +338,19 @@ input[id="5"]:checked ~ .paginacion .paginacion-item[for="5"] {
     margin: 10px 10px;
   }
 }
+@media (min-width: 1024px) {
+  .producto:hover {
+    transform: scale(1.3);
+    box-shadow: 0px 0px 20px 10px rgb(68, 44, 46);
+  }
+}
 .producto img {
   width: 200px;
   height: 200px;
   border-radius: 5px;
   box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.65);
 }
-.producto .producto-text {
+.producto div:last-child {
   width: 200px;
   margin-top: 5px;
   height: auto;
